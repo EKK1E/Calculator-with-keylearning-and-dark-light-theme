@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #222;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      transition: background 0.3s;
+    }
+    .calculator {
+      background: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    #display {
+      width: 100%;
+      font-size: 2em;
+      padding: 10px;
+      margin-bottom: 15px;
+      text-align: right;
+      border: none;
+      border-radius: 5px;
+      background: #000;
+      color: #0f0;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      gap: 10px;
+    }
+    button {
+      font-size: 1.2em;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      background: #555;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #777;
+    }
+    .theme-toggle {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+    }
+    body.light {
+      background: #eee;
+      color: #000;
+    }
+    body.light .calculator {
+      background: #fff;
+    }
+    body.light #display {
+      background: #fff;
+      color: #000;
+      border: 1px solid #ccc;
+    }
+    body.light button {
+      background: #ddd;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" disabled>
+    <div class="buttons">
+      <button>7</button><button>8</button><button>9</button><button>/</button>
+      <button>4</button><button>5</button><button>6</button><button>*</button>
+      <button>1</button><button>2</button><button>3</button><button>-</button>
+      <button>0</button><button>.</button><button>=</button><button>+</button>
+      <button>C</button><button>&larr;</button>
+    </div>
+    <button class="theme-toggle">🌙 Tryb jasny</button>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+    const buttons = document.querySelectorAll('.buttons button');
+    const themeToggle = document.querySelector('.theme-toggle');
+
+    let isLight = false;
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.textContent;
+        if (val === 'C') {
+          display.value = '';
+        } else if (val === '←') {
+          display.value = display.value.slice(0, -1);
+        } else if (val === '=') {
+          try {
+            display.value = eval(display.value);
+          } catch {
+            display.value = 'Błąd';
+          }
+        } else {
+          display.value += val;
+        }
+      });
+    });
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      isLight = !isLight;
+      themeToggle.textContent = isLight ? '🌙 Tryb ciemny' : '🌞 Tryb jasny';
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key.match(/[0-9\.\+\-\*\/]/)) {
+        display.value += e.key;
+      } else if (e.key === 'Backspace') {
+        display.value = display.value.slice(0, -1);
+      } else if (e.key === 'Enter') {
+        try {
+          display.value = eval(display.value);
+        } catch {
+          display.value = 'Błąd';
+        }
+      } else if (e.key === 'Escape') {
+        display.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
