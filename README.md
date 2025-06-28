@@ -16,5 +16,6 @@ Ten projekt to prosty kalkulator stworzony w języku Java z graficznym interfejs
 
 ## 🧑‍🎓 Autor
 Projekt wykonany przez Kyrylo Voloshyn jako praca zaliczeniowa z przedmiotu programowania.
-![image](https://github.com/user-attachments/assets/43fd3c9b-684b-49ab-bcc9-2d27c2866061)
-![image](https://github.com/user-attachments/assets/9ebf721e-2943-4814-80c9-eb5611e5b459)
+![image](https://github.com/user-attachments/assets/9da5227e-ab0d-49d8-b102-8ae38c6663a5)
+![image](https://github.com/user-attachments/assets/b4a87e89-c598-4450-b871-123ff3cd1326)
+
